@@ -1,0 +1,15 @@
+parameters:
+    level: 8
+    excludePaths:
+        - tests/*
+        - build/*
+        - vendor/*
+
+# Consumers `includes:` this file from their own phpstan.neon and then set
+# `paths`, `bootstrapFiles`, and (for WordPress plugins) the
+# szepeviktor/phpstan-wordpress extension — see this package's README.
+#
+# Projects migrating a large legacy codebase (e.g. senioradvicecom-wp, which
+# runs level 6 with a checked-in phpstan-baseline.neon while its
+# strangler-fig migration is in progress) can override `level` after this
+# include; the last `level` wins in PHPStan's Neon merge order.

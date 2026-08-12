@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ruleset name="SilverAssist">
+    <description>Framework-agnostic base ruleset for Silver Assist PHP projects: PSR-12 plus mandatory PHPDoc on classes and methods. No WordPress sniffs live here — see silverassist/wp-coding-standards (SilverAssistWP) for the WordPress-plugin overlay. Consumers reference this as `&lt;rule ref="SilverAssist"/&gt;` from their own phpcs.xml, which also declares its own &lt;file&gt; scan paths (deliberately not set here, since those are project-specific).</description>
+
+    <arg name="colors"/>
+    <arg value="p"/>
+
+    <rule ref="PSR12"/>
+
+    <!-- PHPDoc required on every class and method. Param/return type-hint
+         mismatches are not enforced here — a project migrating legacy code
+         (e.g. senioradvicecom-wp's strangler-fig scope) may need to exclude
+         those two sub-sniffs locally until its own types catch up; see this
+         package's README for the exact override snippet. -->
+    <rule ref="Squiz.Commenting.ClassComment"/>
+    <rule ref="Squiz.Commenting.FunctionComment"/>
+</ruleset>

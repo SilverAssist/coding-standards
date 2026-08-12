@@ -1,0 +1,36 @@
+name: CI
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call: {}
+
+jobs:
+  validate:
+    name: Validate ruleset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v5.2.2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php-version: "8.2"
+          extensions: mbstring, intl
+          coverage: none
+          tools: composer:v2
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress --optimize-autoloader
+
+      - name: Confirm SilverAssist standard registers
+        run: vendor/bin/phpcs -i | grep -q "SilverAssist" || (echo "SilverAssist standard not registered" && exit 1)
+
+      # No fixture-based sniff test yet -- this step is the minimum bar:
+      # the ruleset must at least install and register correctly.
