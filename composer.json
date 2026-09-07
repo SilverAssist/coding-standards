@@ -1,26 +1,31 @@
 {
-    "name": "silverassist/coding-standards",
-    "description": "Framework-agnostic PHPCS ruleset (PSR-12 + PHPDoc enforcement) and PHPStan base config shared by all Silver Assist PHP projects, WordPress or not.",
-    "type": "phpcodesniffer-standard",
-    "license": "PolyForm-Noncommercial-1.0.0",
-    "authors": [
-        {
-            "name": "Silver Assist",
-            "homepage": "https://silverassist.com/"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {
-        "php": ">=8.2",
-        "squizlabs/php_codesniffer": "^3.7 || ^4.0"
-    },
-    "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-        "phpstan/phpstan": "^2.1"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+  "name": "silverassist/coding-standards",
+  "description": "Framework-agnostic PHPCS ruleset (PSR-12 + PHPDoc enforcement) and PHPStan base config shared by all Silver Assist PHP projects, WordPress or not.",
+  "type": "phpcodesniffer-standard",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "authors": [
+    {
+      "name": "Silver Assist",
+      "homepage": "https://silverassist.com/"
     }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.2",
+    "squizlabs/php_codesniffer": "^3.7 || ^4.0"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "phpstan/phpstan": "^2.1"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "setup-hooks": "git config core.hooksPath .githooks",
+    "post-install-cmd": "@setup-hooks",
+    "post-update-cmd": "@setup-hooks"
+  }
 }
